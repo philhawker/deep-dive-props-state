@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { JournalEntry } from './journal_entry'
+
 
 const rawJournalData = [
     { title: 'Post One', content: 'Post content', status: 'draft' },
@@ -7,6 +9,7 @@ const rawJournalData = [
     { title: 'Post One', content: 'Post content', status: 'draft' }
 ];
 
+//class component
 export default class JournalList extends Component {
     constructor(props) {
         super();
@@ -18,6 +21,11 @@ export default class JournalList extends Component {
         };
     }
     render() {
-        return <h2>{this.props.heading}</h2>;
+        return (
+            <div>
+                <h2>{this.props.heading}</h2>
+                <JournalEntry title='some title' content='more content' />
+            </div>
+        );
     }
 }
