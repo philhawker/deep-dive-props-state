@@ -3,7 +3,7 @@ import { JournalEntry } from './journal_entry'
 
 
 const rawJournalData = [
-    { title: 'Post One', content: 'Post content', status: 'draft' },
+    { title: 'Post One', content: 'Post content', status: 'draft' },  // all of this represents raw data that could be pulled in from an outside source
     { title: 'Post Two', content: 'Post content', status: 'draft' },
     { title: 'Post Three', content: 'Post content', status: 'draft' },
     { title: 'Post Four', content: 'Post content', status: 'draft' }
@@ -22,7 +22,19 @@ export default class JournalList extends Component {
     }
 
     clearEntries = () => {
-        this.setState({ journalData: [] })
+        this.setState({ journalData: [], isOpen: false })
+    }
+
+    showAllEntries = () => {
+        this.setState({ journalData: rawJournalData, isOpen: true })
+    }
+
+    toggleStatus = () => {
+        if (this.state.isOpen) {
+            this.setState({ journalData: [], isOpen: false })
+        } else {
+            this.setState({ journalData: rawJournalData, isOpen: true })
+        }
     }
 
     render() {
@@ -43,6 +55,8 @@ export default class JournalList extends Component {
                 {jouranlEntries}
 
                 <button onClick={this.clearEntries}>Clear Journal Entries</button>
+                <button onClick={this.showAllEntries}>Show All Journal Entries</button>
+                <button onClick={this.toggleStatus}>Toggle Entries</button>
             </div>
         );
     }
